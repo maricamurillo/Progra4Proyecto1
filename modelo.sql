@@ -6,7 +6,7 @@ USE `eif209_1901_p01` ;
 
 -- DROP TABLE IF EXISTS `eif209_1901_p01`.`grupo` ;
 CREATE TABLE IF NOT EXISTS `eif209_1901_p01`.`grupo` (
-  `id` INT(6) NOT NULL,
+  `id` INT(6) NOT NULL AUTO_INCREMENT,
   `secuencia` INT(6) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `cupo` INT(2) NOT NULL DEFAULT '0',
