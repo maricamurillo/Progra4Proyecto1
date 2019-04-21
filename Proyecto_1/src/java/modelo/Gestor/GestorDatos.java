@@ -5,7 +5,6 @@
  */
 package modelo.Gestor;
 import cr.ac.database.managers.DBManager;
-import cr.ac.database.managers.MySQLDBManager;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
