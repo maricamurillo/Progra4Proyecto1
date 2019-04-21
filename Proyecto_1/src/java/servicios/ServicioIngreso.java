@@ -40,16 +40,19 @@ public class ServicioIngreso extends HttpServlet {
         boolean usuarioValido = false;
         String usuario = request.getParameter("campoId");
         String password = request.getParameter("campoClave");
+        
         if (usuario != null && password != null) {
             usuarioValido = GestorDatos.obtenerInstancia().verificarUsuario(usuario, password);
- 
         }
+        
         if (usuarioValido) {
             HttpSession sesion = request.getSession(true);
             sesion.setAttribute("usuario", usuario);
             sesion.setAttribute("control", 1);
-           response.sendRedirect("formacionGrupos.jsp");
-        } else {        
+            request.getSession(true).setMaxInactiveInterval(60 * 5);
+            response.sendRedirect("formacionGrupos.jsp");
+        } 
+        else {        
             response.sendRedirect("errorIngreso.jsp");
         }
     }

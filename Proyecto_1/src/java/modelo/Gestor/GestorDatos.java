@@ -134,6 +134,25 @@ public class GestorDatos {
         r.put("datos", a);
         return r;
     }
+    
+    public boolean cambiarClave(String id, String clave){
+        try {
+                DBManager db = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+                try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+                        PreparedStatement stm = cnx.prepareStatement(CMD_CAMBIAR_CLAVE)) {
+                        stm.clearParameters();
+                        stm.setString(1, clave);
+                        stm.setString(2, id);
+
+                    return (stm.executeUpdate() == 1);
+                }
+        }
+        catch (InstantiationException | ClassNotFoundException | IllegalAccessException | SQLException ex) {
+                System.err.printf("Excepción: '%s'%n", ex.getMessage());
+                return false;
+        }
+    }
+    
     private static GestorDatos instancia = null;
     private DBManager db = null;
     private String URL_Servidor = "localhost";
@@ -147,8 +166,12 @@ public class GestorDatos {
     private static final String CMD_Estudiante_ID ="SELECT * FROM id_estudiante;";
     private static final String CMD_Estudiante_APELLIDOS ="SELECT * FROM apellidos_estudiante;";
     private static final String CMD_Estudiante_GRUPOS ="SELECT * FROM grupo_id_estudiante;";
-     private static final String CMD_Estudiante_NOMBRE ="SELECT * FROM nombre_estudiante;";
+    private static final String CMD_Estudiante_NOMBRE ="SELECT * FROM nombre_estudiante;";
     private static final String CMD_Grupo_Estudiante = "SELECT nombre, secuencia,id,cupo,activo \n"+
         "FROM grupo \n"+
         "WHERE id = '%s';";
+    private static final String CMD_CAMBIAR_CLAVE
+            = "UPDATE eif209_1901_p01.estudiante "
+            + "SET clave = ? "
+            + "WHERE id = ? ";
 }

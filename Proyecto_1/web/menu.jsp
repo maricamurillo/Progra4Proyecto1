@@ -32,7 +32,12 @@
                                 ${formulario:campoBoton("Estudiantes","botonUsuario","0")}
                             </form>
                         </td>
-                         <td>
+                        <td>
+                            <form action="cambiarclave">
+                                ${formulario:campoBoton("Cambiar clave","botonCambiaClave","0")}
+                            </form>
+                        </td>
+                        <td>
                             <form action="salir">
                                  ${formulario:campoBoton("Cerrar sesión","botonSalir","0")}
                             </form>

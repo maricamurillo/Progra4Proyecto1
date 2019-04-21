@@ -6,7 +6,6 @@
 package servicios;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +17,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author gaspa
  */
-@WebServlet(name = "servicioMenu", urlPatterns = {"/servicioMenu","/salir","/formacion","/usuarios","/consulta"})
-public class servicioMenu extends HttpServlet {
+@WebServlet(name = "servicioMenu", urlPatterns = {"/servicioMenu","/salir","/formacion","/usuarios","/consulta","/cambiarclave"})
+public class ServicioMenu extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,13 +39,15 @@ public class servicioMenu extends HttpServlet {
         }
         if(request.getServletPath().equals("/formacion")){
             response.sendRedirect("formacionGrupos.jsp");
-        
         }
         if(request.getServletPath().equals("/usuarios")){
              response.sendRedirect("usuarios.jsp");
         }
         if(request.getServletPath().equals("/consulta")){
              response.sendRedirect("consultaGrupos.jsp");
+        }
+        if(request.getServletPath().equals("/cambiarclave")){
+             response.sendRedirect("cambiarclave.jsp");
         }
     }
 
