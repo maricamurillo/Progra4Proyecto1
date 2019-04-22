@@ -31,7 +31,8 @@ public class GestorDatos {
         }
         return instancia;
     }
-     public  boolean verificarUsuario(String usuario, String clave) {
+    
+    public  boolean verificarUsuario(String usuario, String clave) {
         boolean encontrado = false;
 
         try {  
@@ -55,9 +56,11 @@ public class GestorDatos {
         }
         return encontrado;
     }
+     
     public void setUrlServidor(String nuevoURL) { // urlServidor
         URL_Servidor = nuevoURL;
     }
+    
     public List<Estudiante> listarEstudiantes(String estudiante) throws SQLException{
         List<Estudiante> r = new ArrayList<>();
          try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
@@ -76,6 +79,7 @@ public class GestorDatos {
         }
         return r;
     }
+    
     public Grupo getGrupo(int ids) throws SQLException{
         String grupo = String.format(CMD_Grupo_Estudiante,ids);
         
@@ -88,13 +92,14 @@ public class GestorDatos {
                 String nombre = rs.getString("nombre");
                 int secuencia = rs.getInt("secuencia");
                 int cupo = rs.getInt("cupo");
-                String activo = rs.getString("activo");
+                boolean activo = rs.getBoolean("activo");
                 Grupo y = new Grupo(id,secuencia,nombre,cupo,activo);
                 x=y;
             }
         }
         return x;
     }
+    
     public JSONObject obtenerTablaEstudiante(int orden) throws SQLException{
         JSONObject r = new JSONObject();
         JSONArray a = new JSONArray();
@@ -134,7 +139,7 @@ public class GestorDatos {
         return r;
     }
     
-    public boolean cambiarClave(String id, String clave){
+    public boolean cambiarClave(String id, String clave) {
         try {
                 DBManager db = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
                 try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
@@ -150,6 +155,58 @@ public class GestorDatos {
                 System.err.printf("Excepción: '%s'%n", ex.getMessage());
                 return false;
         }
+    }
+    
+    public boolean insertarGrupo(int secuencia, String nombre){
+        try {
+                DBManager db = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+                try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+                        PreparedStatement stm = cnx.prepareStatement(CMD_INSERTAR_GRUPO)) {
+                        stm.clearParameters();
+                        //stm.setInt(1, secuencia);
+                        stm.setString(1, nombre);
+                        return stm.executeUpdate() == 1;
+                }
+        }
+        catch (InstantiationException | ClassNotFoundException | IllegalAccessException | SQLException ex) {
+                System.err.printf("Excepción: '%s'%n", ex.getMessage());
+                return false;
+        }
+    }
+    
+    public List<Grupo> listarGrupos() throws SQLException{
+        List<Grupo> r = new ArrayList<>();
+        
+        try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+                Statement stm = cnx.createStatement(); ResultSet rs = stm.executeQuery(CMD_LISTAR_GRUPOS)) {
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int secuencia = rs.getInt("secuencia");
+                String nombre = rs.getString("nombre");
+                int cupo = rs.getInt("cupo");
+                boolean activo = true;
+                r.add(new Grupo(id, secuencia, nombre,cupo, activo));
+            }
+        }
+        return r;
+    }
+    
+    public JSONObject obtenerTablaGrupos() throws SQLException{
+        JSONObject r = new JSONObject();
+        JSONArray a = new JSONArray();
+        List<Grupo> grupos = listarGrupos();
+        
+        for (Grupo grupo : grupos) {
+            JSONObject j = new JSONObject();
+            j.put("id", grupo.getId());
+            j.put("secuencia", grupo.getSecuencia());
+            j.put("nombre", grupo.getNombre());
+            j.put("cupo", grupo.getCupo());
+            j.put("activo", grupo.getActivo());
+            a.put(j);
+        }
+        r.put("datos", a);
+        return r;
     }
     
     private static GestorDatos instancia = null;
@@ -173,4 +230,11 @@ public class GestorDatos {
             = "UPDATE eif209_1901_p01.estudiante "
             + "SET clave = ? "
             + "WHERE id = ? ";
+    private static final String CMD_INSERTAR_GRUPO 
+            = "INSERT INTO eif209_1901_p01.grupo(nombre) "
+            + "VALUES (?) ";
+    private static final String CMD_LISTAR_GRUPOS 
+            = "SELECT id, secuencia, nombre, cupo, activo "
+            + "FROM eif209_1901_p01.grupo "
+            + "WHERE activo = 1";
 }

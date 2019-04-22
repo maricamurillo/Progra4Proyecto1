@@ -14,7 +14,7 @@ public class Grupo {
     public Grupo() {
     }
 
-    public Grupo(int id, int secuencia, String nombre, int cupo, String activo) {
+    public Grupo(int id, int secuencia, String nombre, int cupo, boolean activo) {
         this.id = id;
         this.secuencia = secuencia;
         this.nombre = nombre;
@@ -53,16 +53,17 @@ public class Grupo {
         this.cupo = cupo;
     }
 
-    public String getActivo() {
+    public boolean getActivo() {
         return activo;
     }
 
-    public void setActivo(String activo) {
+    public void setActivo(boolean activo) {
         this.activo = activo;
     }
+    
     private int id;
     private int secuencia;
     private String nombre;
     private int cupo;
-    private String activo;
+    private boolean activo;
 }

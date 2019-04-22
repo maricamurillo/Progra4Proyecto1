@@ -22,21 +22,13 @@
                  <%@include file="menu.jsp" %>
             </header>
             <div id="contents">
-                <form name="formulario" action="ServicioCambiarClave" method="POST">
-                    <table class="parametros">
-                        <tr>
-                            <td>Nueva clave:&nbsp;</td>
-                            <td>
-                                <input type="password" name="clave" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button type="submit">Enviar</button>
-                            </td>
-                        </tr>
+                <form id="formulario" action="ServicioCambiarClave" method="POST">
+                    <table class="tablaFormulario">
+                        ${formulario:campoEtiquetado("Nueva clave:","clave","1")}
+                        ${formulario:campoBoton("Actualizar","botonActualizar","1")}
                     </table>
                 </form>
+                
                 <%
                     int status = 0;
                     try {

@@ -22,6 +22,7 @@ public class Formularios implements Serializable{
         contenidos.append("</tr>");
         return contenidos.toString();
     }
+    
     public static String campoBoton(String boton, String id, String tr){
         StringBuilder contenidos = new StringBuilder();
         if("1".equals(tr)){
@@ -34,6 +35,5 @@ public class Formularios implements Serializable{
             contenidos.append("</tr>");
         }
         return contenidos.toString();
-    }
-
+    } 
 }

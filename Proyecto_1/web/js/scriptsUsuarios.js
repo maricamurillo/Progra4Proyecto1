@@ -61,6 +61,3 @@ function ordena(){
      if(celda.getAttribute("id")=== "OrdenaGrupo"){ordenar = 5;}
     cargarEstudiantes();
 }
-
-
-
