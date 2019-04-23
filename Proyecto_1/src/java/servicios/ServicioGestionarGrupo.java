@@ -14,6 +14,7 @@ package servicios;
 
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -37,7 +38,7 @@ public class ServicioGestionarGrupo extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, InstantiationException, ClassNotFoundException, IllegalAccessException {
+            throws ServletException, IOException, InstantiationException, ClassNotFoundException, IllegalAccessException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
         String idEstudiante = (String)request.getSession(true).getAttribute("usuario");
@@ -47,14 +48,16 @@ public class ServicioGestionarGrupo extends HttpServlet {
         
         switch(accion){
             case "unir":
-               resultado = GestorDatos.obtenerInstancia().unirseGrupo(idEstudiante, idGrupo);
-               break;
+                if(GestorDatos.obtenerInstancia().validarGrupoEstudiante(idEstudiante) == true){
+                    resultado = GestorDatos.obtenerInstancia().unirseGrupo(idEstudiante, idGrupo);
+                }
+                response.sendRedirect("formacionGrupos.jsp");
+                break;
             case "salir":
-               resultado = GestorDatos.obtenerInstancia().salirseGrupo(idEstudiante, idGrupo);
-               break;
+                resultado = GestorDatos.obtenerInstancia().salirseGrupo(idEstudiante, idGrupo); 
+                response.sendRedirect("formacionGrupos.jsp");
+                break;
         }
-        
-        response.sendRedirect("formacionGrupos.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -77,6 +80,8 @@ public class ServicioGestionarGrupo extends HttpServlet {
             Logger.getLogger(ServicioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(ServicioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioGestionarGrupo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -99,6 +104,8 @@ public class ServicioGestionarGrupo extends HttpServlet {
             Logger.getLogger(ServicioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(ServicioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioGestionarGrupo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

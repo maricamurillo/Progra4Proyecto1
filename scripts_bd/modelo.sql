@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS `eif209_1901_p01`.`grupo` (
   `nombre` VARCHAR(45) NOT NULL,
   `cupo` INT(2) NOT NULL DEFAULT '5',
   `activo` BIT(1) NULL DEFAULT b'1',
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX  `nombre_index`( `nombre`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 

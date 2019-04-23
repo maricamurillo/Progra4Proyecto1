@@ -287,11 +287,28 @@ public class GestorDatos {
                         stm.clearParameters();
                         stm.setString(1, idEstudiante);        
                         if (stm.executeUpdate() == 1){
-                            return actualizarCupoGrupo(idGrupo, 1);
+                            if(actualizarCupoGrupo(idGrupo, 1)) {
+                                return borrarGrupo(idGrupo);
+                            }
                         }
-                        else{
-                            return false;
-                        }
+                }
+        }
+        catch (InstantiationException | ClassNotFoundException | IllegalAccessException | SQLException ex) {
+                System.err.printf("Excepción: '%s'%n", ex.getMessage());
+                return false;
+        }
+        
+        return false;
+    }
+    
+    public boolean borrarGrupo(int idGrupo) {
+        try {
+                DBManager db = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+                try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+                        PreparedStatement stm = cnx.prepareStatement(CMD_BORRAR_GRUPO)) {
+                        stm.clearParameters(); 
+                        stm.setInt(1, idGrupo);       
+                        return (stm.executeUpdate() == 1);
                 }
         }
         catch (InstantiationException | ClassNotFoundException | IllegalAccessException | SQLException ex) {
@@ -315,6 +332,29 @@ public class GestorDatos {
                 System.err.printf("Excepción: '%s'%n", ex.getMessage());
                 return false;
         }
+    }
+    
+    public boolean validarGrupoEstudiante(String idEstudiante) throws SQLException{
+        
+        try {
+                DBManager db = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+                try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+                        PreparedStatement stm = cnx.prepareStatement(CMD_VALIDAR_GRUPO_ESTUDIANTE)) {
+                        stm.clearParameters();
+                        stm.setString(1, idEstudiante);
+                        ResultSet rs = stm.executeQuery();
+                        while (rs.next()){
+                            int grupoId = rs.getInt("grupo_id");
+                            return grupoId == 0;
+                        }
+                }
+        }
+        catch (InstantiationException | ClassNotFoundException | IllegalAccessException | SQLException ex) {
+                System.err.printf("Excepción: '%s'%n", ex.getMessage());
+                return false;
+        }
+        
+        return false;
     }
     
     private static GestorDatos instancia = null;
@@ -361,4 +401,12 @@ public class GestorDatos {
             = "UPDATE eif209_1901_p01.grupo "
             + "SET cupo = cupo + ? "
             + "WHERE id = ? ";
+    private static final String CMD_VALIDAR_GRUPO_ESTUDIANTE
+            = "SELECT grupo_id "
+            + "FROM eif209_1901_p01.estudiante "
+            + "WHERE id = ?";
+    private static final String CMD_BORRAR_GRUPO
+            = "DELETE "
+            + "FROM eif209_1901_p01.grupo "
+            + "WHERE id = ? AND cupo = 5";
 }
