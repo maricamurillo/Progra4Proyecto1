@@ -52,9 +52,8 @@
                         out.println(String.format("<p class=\"mensajeError\">%s</p>", r.toString()));
                     }
                 %>
-            </div>
-            <h2>Unirse a grupo</h2>
-            <table id="tablaGrupos" class="tablaDatos">
+            <h2>Grupos disponibles</h2>
+            <table id="tablaGruposDisponibles" class="tablaDatos">
                 <thead>
                     <tr>
                         <td id="Nombre">Nombre</td>
@@ -62,8 +61,20 @@
                         <td>Accion</td>
                     </tr>
                 </thead>
-                <tbody id="datosTablaGrupos"></tbody>
+                <tbody id="datosTablaGruposDisponibles"></tbody>
             </table>
+            <h2>Mi grupo</h2>
+            <table id="tablaMisGrupos" class="tablaDatos">
+                <thead>
+                    <tr>
+                        <td id="Nombre">Nombre</td>
+                        <td id="Cupo">Cupo</td>
+                        <td>Accion</td>
+                    </tr>
+                </thead>
+                <tbody id="datosTablaMisGrupos"></tbody>
+            </table>
+            </div>
         </div>
     </body>
 </html>

@@ -13,7 +13,6 @@
 package servicios;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,10 +45,13 @@ public class ServicioGestionarGrupo extends HttpServlet {
         String accion = request.getParameter("accion");
         boolean resultado = false;
         
-        if(accion != null){
-            if(accion.equals("unir")){
-                resultado = GestorDatos.obtenerInstancia().unirseGrupo(idEstudiante, idGrupo);
-            }
+        switch(accion){
+            case "unir":
+               resultado = GestorDatos.obtenerInstancia().unirseGrupo(idEstudiante, idGrupo);
+               break;
+            case "salir":
+               resultado = GestorDatos.obtenerInstancia().salirseGrupo(idEstudiante, idGrupo);
+               break;
         }
         
         response.sendRedirect("formacionGrupos.jsp");

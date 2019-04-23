@@ -22,6 +22,8 @@ import modelo.entidades.Estudiante;
 import modelo.entidades.Grupo;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+
 public class GestorDatos {
     
      private GestorDatos()
@@ -68,7 +70,7 @@ public class GestorDatos {
     
     public List<Estudiante> listarEstudiantes(String estudiante) throws SQLException{
         List<Estudiante> r = new ArrayList<>();
-         try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+        try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
                 Statement stm = cnx.createStatement(); ResultSet rs = stm.executeQuery(estudiante)) {
             while (rs.next()) {
                 String id = rs.getString("id");
@@ -186,17 +188,19 @@ public class GestorDatos {
                 Statement stm = cnx.createStatement(); ResultSet rs = stm.executeQuery(CMD_LISTAR_GRUPOS)) {
             while (rs.next()) {
                 int id = rs.getInt("id");
-                int secuencia = rs.getInt("secuencia");
                 String nombre = rs.getString("nombre");
                 int cupo = rs.getInt("cupo");
-                boolean activo = true;
-                r.add(new Grupo(id, secuencia, nombre,cupo, activo));
+                Grupo g = new Grupo();
+                g.setId(id);
+                g.setNombre(nombre);
+                g.setCupo(cupo);
+                r.add(g);
             }
         }
         return r;
     }
     
-    public JSONObject obtenerTablaGrupos() throws SQLException{
+    public JSONObject obtenerTablaGruposDisponibles() throws SQLException{
         JSONObject r = new JSONObject();
         JSONArray a = new JSONArray();
         List<Grupo> grupos = listarGrupos();
@@ -204,10 +208,49 @@ public class GestorDatos {
         for (Grupo grupo : grupos) {
             JSONObject j = new JSONObject();
             j.put("id", grupo.getId());
-            j.put("secuencia", grupo.getSecuencia());
             j.put("nombre", grupo.getNombre());
             j.put("cupo", grupo.getCupo());
-            j.put("activo", grupo.getActivo());
+            a.put(j);
+        }
+        r.put("datos", a);
+        return r;
+    }
+    
+    
+    public List<Grupo> listarMisGrupos(String idEstudiante) throws SQLException{
+        List<Grupo> r = new ArrayList<>();
+        Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+        
+        try (PreparedStatement stm = cnx.prepareStatement(CMD_LISTAR_GRUPOS_DE_ESTUDIANTE)) {
+                stm.clearParameters();
+                stm.setString(1, idEstudiante);
+                ResultSet rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String nombre = rs.getString("nombre");
+                    int cupo = rs.getInt("cupo");
+                    Grupo g = new Grupo();
+                    g.setId(id);
+                    g.setNombre(nombre);
+                    g.setCupo(cupo);
+                    r.add(g);
+                }
+        }
+        
+        return r;
+    }
+    
+    public JSONObject obtenerTablaMisGrupos(String idEstudiante) throws SQLException{
+        JSONObject r = new JSONObject();
+        JSONArray a = new JSONArray();
+        List<Grupo> grupos = listarMisGrupos(idEstudiante);
+        
+        for (Grupo grupo : grupos) {
+            JSONObject j = new JSONObject();
+            j.put("id", grupo.getId());
+            j.put("nombre", grupo.getNombre());
+            j.put("cupo", grupo.getCupo());
             a.put(j);
         }
         r.put("datos", a);
@@ -223,7 +266,7 @@ public class GestorDatos {
                         stm.setInt(1, idGrupo);
                         stm.setString(2, idEstudiante);        
                         if (stm.executeUpdate() == 1){
-                            return actualizarCupoGrupo(idGrupo);
+                            return actualizarCupoGrupo(idGrupo, -1);
                         }
                         else{
                             return false;
@@ -236,13 +279,35 @@ public class GestorDatos {
         }
     }
     
-    public boolean actualizarCupoGrupo(int idGrupo) {
+    public boolean salirseGrupo(String idEstudiante, int idGrupo) {
+        try {
+                DBManager db = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+                try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+                        PreparedStatement stm = cnx.prepareStatement(CMD_SALIRSE_GRUPO)) {
+                        stm.clearParameters();
+                        stm.setString(1, idEstudiante);        
+                        if (stm.executeUpdate() == 1){
+                            return actualizarCupoGrupo(idGrupo, 1);
+                        }
+                        else{
+                            return false;
+                        }
+                }
+        }
+        catch (InstantiationException | ClassNotFoundException | IllegalAccessException | SQLException ex) {
+                System.err.printf("Excepción: '%s'%n", ex.getMessage());
+                return false;
+        }
+    }
+    
+    public boolean actualizarCupoGrupo(int idGrupo, int cantidad) {
         try {
                 DBManager db = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
                 try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
                         PreparedStatement stm = cnx.prepareStatement(CMD_ACTUALIZAR_CUPO_GRUPO)) {
                         stm.clearParameters();
-                        stm.setInt(1, idGrupo);       
+                        stm.setInt(1, cantidad);   
+                        stm.setInt(2, idGrupo);       
                         return (stm.executeUpdate() == 1);
                 }
         }
@@ -277,15 +342,23 @@ public class GestorDatos {
             = "INSERT INTO eif209_1901_p01.grupo(nombre) "
             + "VALUES (?) ";
     private static final String CMD_LISTAR_GRUPOS 
-            = "SELECT id, secuencia, nombre, cupo, activo "
+            = "SELECT id, nombre, cupo "
             + "FROM eif209_1901_p01.grupo "
             + "WHERE activo = 1 AND cupo > 0";
+    private static final String CMD_LISTAR_GRUPOS_DE_ESTUDIANTE 
+            = "SELECT g.id, g.nombre, g.cupo "
+            + "FROM eif209_1901_p01.grupo g "
+            + "INNER JOIN eif209_1901_p01.estudiante e ON e.grupo_id = g.id AND e.id = ?";
     private static final String CMD_UNIRSE_GRUPO
             = "UPDATE eif209_1901_p01.estudiante "
             + "SET grupo_id = ? "
             + "WHERE id = ? ";
+    private static final String CMD_SALIRSE_GRUPO
+            = "UPDATE eif209_1901_p01.estudiante "
+            + "SET grupo_id = null "
+            + "WHERE id = ? ";
     private static final String CMD_ACTUALIZAR_CUPO_GRUPO
             = "UPDATE eif209_1901_p01.grupo "
-            + "SET cupo = cupo - 1 "
+            + "SET cupo = cupo + ? "
             + "WHERE id = ? ";
 }

@@ -37,7 +37,18 @@ public class ServicioListarGrupos extends HttpServlet {
             throws ServletException, IOException, InstantiationException, ClassNotFoundException, IllegalAccessException, SQLException{
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println(GestorDatos.obtenerInstancia().obtenerTablaGrupos());
+            
+            String listar = request.getParameter("listar");
+            
+            switch(listar){
+                case "disponibles": 
+                    out.println(GestorDatos.obtenerInstancia().obtenerTablaGruposDisponibles());
+                    break;
+                case "idEstudiante":
+                    String idEstudiante = (String)request.getSession(true).getAttribute("usuario");
+                    out.println(GestorDatos.obtenerInstancia().obtenerTablaMisGrupos(idEstudiante));
+                    break;
+            }
         }
     }
 
