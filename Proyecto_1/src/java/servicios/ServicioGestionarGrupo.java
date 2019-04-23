@@ -44,18 +44,25 @@ public class ServicioGestionarGrupo extends HttpServlet {
         String idEstudiante = (String)request.getSession(true).getAttribute("usuario");
         int idGrupo = parseInt(request.getParameter("idgrupo"));
         String accion = request.getParameter("accion");
-        boolean resultado = false;
         
         switch(accion){
             case "unir":
                 if(GestorDatos.obtenerInstancia().validarGrupoEstudiante(idEstudiante) == true){
-                    resultado = GestorDatos.obtenerInstancia().unirseGrupo(idEstudiante, idGrupo);
+                    if(GestorDatos.obtenerInstancia().unirseGrupo(idEstudiante, idGrupo)){
+                        response.sendRedirect("formacionGrupos.jsp?status=3");
+                        break;
+                    }
                 }
-                response.sendRedirect("formacionGrupos.jsp");
+                
+                response.sendRedirect("formacionGrupos.jsp?status=4");
                 break;
             case "salir":
-                resultado = GestorDatos.obtenerInstancia().salirseGrupo(idEstudiante, idGrupo); 
-                response.sendRedirect("formacionGrupos.jsp");
+                if(GestorDatos.obtenerInstancia().salirseGrupo(idEstudiante, idGrupo)){
+                    response.sendRedirect("formacionGrupos.jsp?status=5");
+                } 
+                else{
+                    response.sendRedirect("formacionGrupos.jsp?status=6");
+                }
                 break;
         }
     }
