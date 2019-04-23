@@ -1,8 +1,13 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*
+    scriptGrupos.java
+
+    EIF209 - Programación 4 – Proyecto #1 
+    Abril 2019
+
+    Autores:
+            - 113030275 Mariela Cambronero
+*/
 
 
 function initGrupos(){
@@ -29,7 +34,7 @@ function solicitarTablaGrupos(textoJSON){
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerText = tabla.datos[i].cupo;
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML = "<a href=\"ServicioUnirseGrupo?grupoid=" + tabla.datos[i].id + "\">Unirse</a>";
+            nuevaCelda.innerHTML = "<a href=\"GestionarGrupo?accion=unir&idgrupo=" + tabla.datos[i].id + "\">Unirse</a>";
         }
     }
 }

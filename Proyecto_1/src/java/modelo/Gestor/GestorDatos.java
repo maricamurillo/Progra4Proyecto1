@@ -1,8 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    GestorDatos.java
+
+    EIF209 - Programación 4 – Proyecto #1 
+    Abril 2019
+
+    Autores:
+            - 113030275 Mariela Cambronero
+*/
+
 package modelo.Gestor;
 import cr.ac.database.managers.DBManager;
 import java.sql.Connection;
@@ -209,6 +214,44 @@ public class GestorDatos {
         return r;
     }
     
+    public boolean unirseGrupo(String idEstudiante, int idGrupo) {
+        try {
+                DBManager db = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+                try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+                        PreparedStatement stm = cnx.prepareStatement(CMD_UNIRSE_GRUPO)) {
+                        stm.clearParameters();
+                        stm.setInt(1, idGrupo);
+                        stm.setString(2, idEstudiante);        
+                        if (stm.executeUpdate() == 1){
+                            return actualizarCupoGrupo(idGrupo);
+                        }
+                        else{
+                            return false;
+                        }
+                }
+        }
+        catch (InstantiationException | ClassNotFoundException | IllegalAccessException | SQLException ex) {
+                System.err.printf("Excepción: '%s'%n", ex.getMessage());
+                return false;
+        }
+    }
+    
+    public boolean actualizarCupoGrupo(int idGrupo) {
+        try {
+                DBManager db = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+                try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+                        PreparedStatement stm = cnx.prepareStatement(CMD_ACTUALIZAR_CUPO_GRUPO)) {
+                        stm.clearParameters();
+                        stm.setInt(1, idGrupo);       
+                        return (stm.executeUpdate() == 1);
+                }
+        }
+        catch (InstantiationException | ClassNotFoundException | IllegalAccessException | SQLException ex) {
+                System.err.printf("Excepción: '%s'%n", ex.getMessage());
+                return false;
+        }
+    }
+    
     private static GestorDatos instancia = null;
     private DBManager db = null;
     private String URL_Servidor = "localhost";
@@ -236,5 +279,13 @@ public class GestorDatos {
     private static final String CMD_LISTAR_GRUPOS 
             = "SELECT id, secuencia, nombre, cupo, activo "
             + "FROM eif209_1901_p01.grupo "
-            + "WHERE activo = 1";
+            + "WHERE activo = 1 AND cupo > 0";
+    private static final String CMD_UNIRSE_GRUPO
+            = "UPDATE eif209_1901_p01.estudiante "
+            + "SET grupo_id = ? "
+            + "WHERE id = ? ";
+    private static final String CMD_ACTUALIZAR_CUPO_GRUPO
+            = "UPDATE eif209_1901_p01.grupo "
+            + "SET cupo = cupo - 1 "
+            + "WHERE id = ? ";
 }

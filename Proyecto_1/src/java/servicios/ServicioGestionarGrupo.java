@@ -14,18 +14,19 @@ package servicios;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Gestor.GestorDatos;
 
-/**
- *
- * @author user1
- */
-@WebServlet(name = "ServicioUnirseGrupo", urlPatterns = {"/ServicioUnirseGrupo", "/UnirseGrupo"})
-public class ServicioUnirseGrupo extends HttpServlet {
+
+@WebServlet(name = "ServicioGestionarGrupo", urlPatterns = {"/ServicioGestionarGrupo", "/GestionarGrupo"})
+public class ServicioGestionarGrupo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +38,21 @@ public class ServicioUnirseGrupo extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, InstantiationException, ClassNotFoundException, IllegalAccessException {
         response.setContentType("text/html;charset=UTF-8");
         
+        String idEstudiante = (String)request.getSession(true).getAttribute("usuario");
+        int idGrupo = parseInt(request.getParameter("idgrupo"));
+        String accion = request.getParameter("accion");
+        boolean resultado = false;
         
+        if(accion != null){
+            if(accion.equals("unir")){
+                resultado = GestorDatos.obtenerInstancia().unirseGrupo(idEstudiante, idGrupo);
+            }
+        }
+        
+        response.sendRedirect("formacionGrupos.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,10 +64,18 @@ public class ServicioUnirseGrupo extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(ServicioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServicioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ServicioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -69,7 +89,15 @@ public class ServicioUnirseGrupo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(ServicioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServicioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ServicioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -7,12 +7,11 @@ USE `eif209_1901_p01` ;
 -- DROP TABLE IF EXISTS `eif209_1901_p01`.`grupo` ;
 CREATE TABLE IF NOT EXISTS `eif209_1901_p01`.`grupo` (
   `id` INT(6) NOT NULL AUTO_INCREMENT,
-  `secuencia` INT(6) NOT NULL,
+  `secuencia` INT(6) ,
   `nombre` VARCHAR(45) NOT NULL,
-  `cupo` INT(2) NOT NULL DEFAULT '0',
+  `cupo` INT(2) NOT NULL DEFAULT '5',
   `activo` BIT(1) NULL DEFAULT b'1',
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `secuencia_UNIQUE` (`secuencia` ASC))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
