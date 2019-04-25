@@ -35,3 +35,36 @@ and open the template in the editor.
 .closebtn:hover {
   color: black;
 }
+
+                    
+
+.tablaDatos {
+    border: 2px burlywood ;
+    border-collapse: collapse;
+}
+
+.tablaDatos th, .tablaDatos td {
+    border: 1px solid darkslategray;
+    padding: 4px 16px 4px 16px;
+    font-size: 10pt;
+}
+
+.tablaDatos caption {
+    border: 1px solid darkslategray;
+    padding: 4px 16px 4px 16px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+
+.tablaDatos th {
+    background-color: darkslategray;
+    color: lightyellow;
+}
+
+.tablaDatos tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+.tablaDatos .columnaValor {
+    text-align: right;
+}

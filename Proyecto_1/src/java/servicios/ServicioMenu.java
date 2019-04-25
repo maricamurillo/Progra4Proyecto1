@@ -6,12 +6,15 @@
 package servicios;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.Gestor.GestorDatos;
 
 /**
  *
@@ -30,11 +33,13 @@ public class ServicioMenu extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, InstantiationException, ClassNotFoundException, IllegalAccessException {
         response.setContentType("text/html;charset=UTF-8");
         if(request.getServletPath().equals("/salir")){
             HttpSession sesion = request.getSession(true);
+            String usuario = (String)sesion.getAttribute("usuario");
             sesion.invalidate();
+            GestorDatos.obtenerInstancia().getListaActivos().remove(usuario);
             response.sendRedirect("index.jsp");
         }
         if(request.getServletPath().equals("/formacion")){
@@ -63,7 +68,15 @@ public class ServicioMenu extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(ServicioMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServicioMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ServicioMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -77,7 +90,15 @@ public class ServicioMenu extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(ServicioMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServicioMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ServicioMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

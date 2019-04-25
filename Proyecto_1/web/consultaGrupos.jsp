@@ -9,18 +9,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="js/loadJSON.js" type="text/javascript"></script>
+        <script src="js/scriptMuestraGrupo.js" type="text/javascript"></script>
+       <link href="css/tablas.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
       
     </head>
-    <body>
+    <body onload="initMuestra()">
         <div id="wrapper">
             <header id="header">
                  <%@include file="header.jsp" %> 
                  <%@include file="menu.jsp" %>
             </header>
-            <div id="contents">  
+            <div id="contents">       
             </div>
         </div>
-        <h1>consulta</h1>
     </body>
 </html>

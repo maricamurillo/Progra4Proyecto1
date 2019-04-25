@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="formulario" uri="/WEB-INF/tlds/formulario" %>
+<script src="js/scriptCompruebaLogin.js" type="text/javascript"></script>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,27 +19,27 @@
                 <table>
                     <tr>
                         <td>
-                            <form action="formacion">
+                            <form action="formacion" method="POST">
                                 ${formulario:campoBoton("Formación de grupos","botonFormacion","0")}
                             </form>
                         </td>
                         <td>
-                            <form action="consulta">
+                            <form action="consulta" method="POST">
                                 ${formulario:campoBoton("Consulta de grupos","botonConsulta","0")}
                             </form>
                         </td>
                         <td>
-                            <form action="usuarios">
+                            <form action="usuarios" method="POST">
                                 ${formulario:campoBoton("Estudiantes","botonUsuario","0")}
                             </form>
                         </td>
                         <td>
-                            <form action="cambiarclave">
+                            <form action="cambiarclave" method="POST">
                                 ${formulario:campoBoton("Cambiar clave","botonCambiaClave","0")}
                             </form>
                         </td>
                         <td>
-                            <form action="salir">
+                            <form action="salir" method="POST">
                                  ${formulario:campoBoton("Cerrar sesión","botonSalir","0")}
                             </form>
                         </td>

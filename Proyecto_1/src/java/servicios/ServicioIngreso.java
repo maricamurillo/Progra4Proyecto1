@@ -50,6 +50,7 @@ public class ServicioIngreso extends HttpServlet {
             sesion.setAttribute("usuario", usuario);
             sesion.setAttribute("control", 1);
             request.getSession(true).setMaxInactiveInterval(60 * 5);
+            GestorDatos.obtenerInstancia().getListaActivos().add(usuario);
             response.sendRedirect("formacionGrupos.jsp");
         } 
         else {        

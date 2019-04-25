@@ -35,5 +35,8 @@ public class Formularios implements Serializable{
             contenidos.append("</tr>");
         }
         return contenidos.toString();
-    } 
+    }
+    
+   
 }
+

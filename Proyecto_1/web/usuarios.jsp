@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="js/loadJSON.js" type="text/javascript"></script>
         <script src="js/scriptsUsuarios.js" type="text/javascript"></script>
+        <link href="css/tablas.css" rel="stylesheet" type="text/css"/>
         <title>JSP Usuarios</title>
        
     </head>

@@ -13,6 +13,7 @@
 function initGrupos(){
     cargarGruposDisponibles();
     cargarMisGrupos();
+    //setTim(actualizarPersona(), 3000);
 }
 
 function cargarGruposDisponibles(){
