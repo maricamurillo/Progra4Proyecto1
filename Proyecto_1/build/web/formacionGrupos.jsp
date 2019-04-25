@@ -37,7 +37,7 @@
                     StringBuilder r = new StringBuilder();
                     switch (status) {
                         case 1:
-                            r.append("Grupo creado!");
+                            r.append("Grupo creado.");
                             out.println(String.format("<div class=\"alert success\"><span class=\"closebtn\">&times;</span><strong>%s</strong></div>", r.toString()));
                             break;
                         case 2:
@@ -45,7 +45,7 @@
                             out.println(String.format("<div class=\"alert\"><span class=\"closebtn\">&times;</span><strong>%s</strong></div>", r.toString()));
                             break;
                         case 3:
-                            r.append("Unido al grupo!");
+                            r.append("Unido al grupo.");
                             out.println(String.format("<div class=\"alert success\"><span class=\"closebtn\">&times;</span><strong>%s</strong></div>", r.toString()));
                             break;
                         case 4:
@@ -53,11 +53,15 @@
                             out.println(String.format("<div class=\"alert warning\"><span class=\"closebtn\">&times;</span><strong>%s</strong></div>", r.toString()));
                             break;
                         case 5:
-                            r.append("Salio del grupo!");
+                            r.append("Salio del grupo.");
                             out.println(String.format("<div class=\"alert info\"><span class=\"closebtn\">&times;</span><strong>%s</strong></div>", r.toString()));
                             break;
                         case 6:
                             r.append("Ocurrio un error durante la salida del grupo.");
+                            out.println(String.format("<div class=\"alert\"><span class=\"closebtn\">&times;</span><strong>%s</strong></div>", r.toString()));
+                            break;
+                        case 7:
+                            r.append("Ocurrio un error al unirse al grupo.");
                             out.println(String.format("<div class=\"alert\"><span class=\"closebtn\">&times;</span><strong>%s</strong></div>", r.toString()));
                             break;
                     }

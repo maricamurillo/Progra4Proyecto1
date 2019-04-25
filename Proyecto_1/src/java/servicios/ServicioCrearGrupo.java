@@ -42,11 +42,22 @@ public class ServicioCrearGrupo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String nombreGrupo = request.getParameter("nombreGrupo");
-        boolean resultado = GestorDatos.obtenerInstancia().insertarGrupo(0, nombreGrupo);
+        boolean resultado = GestorDatos.obtenerInstancia().insertarGrupo(nombreGrupo);
         
         if (resultado) {
-            response.sendRedirect("formacionGrupos.jsp?status=1");
+            int grupoId =  GestorDatos.obtenerInstancia().buscarIdGrupo(nombreGrupo);
+            String idEstudiante = (String)request.getSession(true).getAttribute("usuario");
+            resultado = GestorDatos.obtenerInstancia().unirseGrupo(idEstudiante, grupoId);
+            
+            if (resultado) {
+                response.sendRedirect("formacionGrupos.jsp?status=1");
+            }
+            
+            else{
+                response.sendRedirect("formacionGrupos.jsp?status=7");
+            }
         }
+        
         else{
             response.sendRedirect("formacionGrupos.jsp?status=2");
         }

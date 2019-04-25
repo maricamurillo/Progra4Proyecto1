@@ -405,13 +405,52 @@ public class GestorDatos {
         
         return false;
     }
+    
+    public int buscarIdGrupo(String nombreGrupo){
+        try {
+                DBManager db = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+                try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+                        PreparedStatement stm = cnx.prepareStatement(CMD_BUSCAR_GRUPO_NOMBRE)) {
+                        stm.clearParameters();
+                        stm.setString(1, nombreGrupo);
+                        ResultSet rs = stm.executeQuery();
+                        while (rs.next()){
+                            int grupoId = rs.getInt("id");
+                            return grupoId;
+                        }
+                }
+        }
+        catch (InstantiationException | ClassNotFoundException | IllegalAccessException | SQLException ex) {
+                System.err.printf("Excepción: '%s'%n", ex.getMessage());
+                return -1;
+        }
+        
+        return -1;
+    }
+    
+    public boolean insertarGrupo(String nombre){
+        try {
+                DBManager db = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+                try (Connection cnx = db.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+                        PreparedStatement stm = cnx.prepareStatement(CMD_INSERTAR_GRUPO)) {
+                        stm.clearParameters();
+                        stm.setString(1, nombre);
+                        return stm.executeUpdate() == 1;
+                }
+        }
+        catch (InstantiationException | ClassNotFoundException | IllegalAccessException | SQLException ex) {
+                System.err.printf("Excepción: '%s'%n", ex.getMessage());
+                return false;
+        }
+    }
+    
     private List<String> listaActivos;
     private static GestorDatos instancia = null;
     private DBManager db = null;
     private String URL_Servidor = "localhost";
     private static final String BASE_DATOS = "eif209_1901_p01";
     private static final String LOGIN = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "admin1234";
     private static final String CMD_VERIFICAR ="SELECT id\n" +
         "FROM estudiante\n" +
         "WHERE id = ? AND clave= ?;";
@@ -467,4 +506,8 @@ public class GestorDatos {
             = "DELETE "
             + "FROM eif209_1901_p01.grupo "
             + "WHERE id = ? AND cupo = 5";
+    
+    private static final String CMD_BUSCAR_GRUPO_NOMBRE 
+            = "SELECT id FROM eif209_1901_p01.grupo "
+            + "WHERE nombre = ? ";
 }
