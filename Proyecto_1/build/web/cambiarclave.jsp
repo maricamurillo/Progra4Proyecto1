@@ -5,7 +5,8 @@
     EIF209 - Programacion 4 - Proyecto #1
     Abril 2019
     Autores: 
-                -113030275  Mariela Cambronero Murillo
+                - 113030275  Mariela Cambronero Murillo
+                - 111320128 Rodrigo Rodriguez
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,6 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
         <title>Cambiar clave</title>
     </head>
     <body>
@@ -22,8 +24,8 @@
                  <%@include file="menu.jsp" %>
             </header>
             <div id="contents">
-                <form id="formulario" action="ServicioCambiarClave" method="POST">
-                    <table class="tablaFormulario">
+                <form id="ingreso" action="ServicioCambiarClave" method="POST">
+                    <table >
                         ${formulario:campoEtiquetado("Nueva clave:","clave","1")}
                         ${formulario:campoBoton("Actualizar","botonActualizar","1")}
                     </table>
@@ -51,5 +53,6 @@
                 %>
             </div>
          </div>
+         <%@include file="footer.jsp" %>
     </body>
 </html>

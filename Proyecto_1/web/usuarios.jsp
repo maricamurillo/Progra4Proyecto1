@@ -1,7 +1,12 @@
-<%-- 
-    Document   : usuarios
-    Created on : 19/04/2019, 03:46:06 AM
-    Author     : gaspa
+<%--
+    usuarios.jsp
+
+    EIF209 - Programación 4 – Proyecto #1 
+    Abril 2019
+
+    Autores:
+            - 113030275 Mariela Cambronero
+            - 111320128 Rodrigo Rodriguez
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,6 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
         <script src="js/loadJSON.js" type="text/javascript"></script>
         <script src="js/scriptsUsuarios.js" type="text/javascript"></script>
         <link href="css/tablas.css" rel="stylesheet" type="text/css"/>
@@ -22,7 +28,7 @@
                  <%@include file="menu.jsp" %>
             </header>
             <div id="contents">
-                <form>
+                <form id="ingreso">
                     <table id="tablaUsuarios" class="tablaDatos">
                         <thead>
                             <tr>
@@ -41,6 +47,6 @@
                 </form>
             </div>
         </div>
-        <h1>usuario</h1>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

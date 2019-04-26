@@ -7,6 +7,7 @@
 
     Autores:
             - 113030275 Mariela Cambronero
+            - 111320128 Rodrigo Rodriguez
 
  */
 

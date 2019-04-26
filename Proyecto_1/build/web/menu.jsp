@@ -1,7 +1,12 @@
-<%-- 
-    Document   : header
-    Created on : 19/04/2019, 03:49:43 AM
-    Author     : gaspa
+<%--
+    menu.jsp
+
+    EIF209 - Programación 4 – Proyecto #1 
+    Abril 2019
+
+    Autores:
+            - 113030275 Mariela Cambronero
+            - 111320128 Rodrigo Rodriguez
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,7 +16,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+        <title>Menu</title>
     </head>
     <body>
         <div id="wrapper">

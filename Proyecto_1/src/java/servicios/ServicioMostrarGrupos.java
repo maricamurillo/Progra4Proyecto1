@@ -1,8 +1,17 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
+    ServicioMostrarGrupos.java
+
+    EIF209 - Programación 4 – Proyecto #1 
+    Abril 2019
+
+    Autores:
+            - 113030275 Mariela Cambronero
+            - 111320128 Rodrigo Rodriguez
+
  */
+
 package servicios;
 
 import java.io.IOException;
@@ -17,10 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Gestor.GestorDatos;
 
-/**
- *
- * @author Rodrigo
- */
+
 @WebServlet(name = "ServicioMostrarGrupos", urlPatterns = {"/ServicioMostrarGrupos"})
 public class ServicioMostrarGrupos extends HttpServlet {
 

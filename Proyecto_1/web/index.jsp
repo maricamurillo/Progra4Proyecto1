@@ -1,7 +1,12 @@
-<%-- 
-    Document   : registro
-    Created on : 18/04/2019, 03:10:32 PM
-    Author     : gaspa
+<%--
+    index.jsp
+
+    EIF209 - Programación 4 – Proyecto #1 
+    Abril 2019
+
+    Autores:
+            - 113030275 Mariela Cambronero
+            - 111320128 Rodrigo Rodriguez
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,14 +17,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+        <title>Login</title>
     </head>
     <body>
         <div id="wrapper">
             <header>
                  <%@include file="header.jsp" %> 
             </header>
-            <div id="contents">
+            <div>
                 <form id="ingreso" action="ServicioIngreso" method="POST">
                     <table class="tablaFormulario">
                         ${formulario:campoEtiquetado("Id usuario:","campoId","0")}
@@ -28,7 +34,7 @@
                     </table>
                 </form>
             </div>
-            <footer></footer>
         </div>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

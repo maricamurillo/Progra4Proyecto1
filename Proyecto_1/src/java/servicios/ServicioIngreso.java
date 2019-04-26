@@ -1,8 +1,18 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
+    ServicioIngresojava
+
+    EIF209 - Programación 4 – Proyecto #1 
+    Abril 2019
+
+    Autores:
+            - 113030275 Mariela Cambronero
+            - 111320128 Rodrigo Rodriguez
+
  */
+
+
 package servicios;
 
 import java.io.IOException;
@@ -17,10 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import modelo.Gestor.GestorDatos;
 
-/**
- *
- * @author gaspa
- */
+
 @WebServlet(name = "ServicioIngreso", urlPatterns = {"/ServicioIngreso"})
 public class ServicioIngreso extends HttpServlet {
 

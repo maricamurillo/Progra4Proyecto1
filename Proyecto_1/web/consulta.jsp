@@ -1,7 +1,12 @@
-<%-- 
-    Document   : consulta
-    Created on : 19/04/2019, 03:46:25 AM
-    Author     : gaspa
+<%--
+    consulta.jsp
+
+    EIF209 - Programación 4 – Proyecto #1 
+    Abril 2019
+
+    Autores:
+            - 113030275 Mariela Cambronero
+            - 111320128 Rodrigo Rodriguez
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

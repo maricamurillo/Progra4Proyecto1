@@ -1,7 +1,12 @@
-<%-- 
-    Document   : header
-    Created on : 19/04/2019, 04:32:44 AM
-    Author     : gaspa
+<%--
+    header.jsp
+
+    EIF209 - Programación 4 – Proyecto #1 
+    Abril 2019
+
+    Autores:
+            - 113030275 Mariela Cambronero
+            - 111320128 Rodrigo Rodriguez
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,13 +14,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div>
-        <h1>EIF209 Programacion 4</h1>
-        <h1>Proyecto#1 Formacion de grupos</h1>
-        <h1>1er ciclo 2019</h1>     
+        <h3>EIF209 Programacion 4</h3>
+        <h3>Proyecto#1 Formacion de grupos</h3>
+        <h3>1er ciclo 2019</h3>     
     </div>
     </body>
 </html>

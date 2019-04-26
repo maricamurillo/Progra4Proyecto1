@@ -1,14 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    Formularios.css
+
+    EIF209 - Programación 4 – Proyecto #1 
+    Abril 2019
+
+    Autores:
+            - 113030275 Mariela Cambronero
+            - 111320128 Rodrigo Rodriguez
+
+*/
 package beans;
 
-/**
- *
- * @author gaspa
- */
 import java.io.Serializable;
 public class Formularios implements Serializable{
     public static String campoEtiquetado(String etiqueta, String id, String clave) {

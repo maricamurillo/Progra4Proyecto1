@@ -6,6 +6,7 @@
 
     Autores:
             - 113030275 Mariela Cambronero
+            - 111320128 Rodrigo Rodriguez
 --%>
 
 
@@ -67,17 +68,19 @@
                     }
                 }
             %>
-            
-            <h2>Crear grupo</h2>
+          
             <div id="contents">
                 <form id="grupo" action="CrearGrupo" method="POST">
+                    <fieldset>
+                        <legend>Crear grupo</legend>
                     <table>
                         ${formulario:campoEtiquetado("Nombre del grupo:","nombreGrupo","0")}
                         ${formulario:campoBoton("Agregar","botonAgregar","1")}
                     </table>
+                    </fieldset>
                 </form>
-                <h2>Grupos disponibles</h2>
                 <table id="tablaGruposDisponibles" class="tablaDatos">
+                    <caption>Grupos disponibles </caption>
                     <thead>
                         <tr>
                             <td id="Nombre">Nombre</td>
@@ -87,8 +90,8 @@
                     </thead>
                     <tbody id="datosTablaGruposDisponibles"></tbody>
                 </table>
-                <h2>Mi grupo</h2>
                 <table id="tablaMisGrupos" class="tablaDatos">
+                    <caption>Mi grupo </caption>
                     <thead>
                         <tr>
                             <td id="Nombre">Nombre</td>
@@ -99,8 +102,7 @@
                     <tbody id="datosTablaMisGrupos"></tbody>
                 </table>
             </div>
-        </div>
-                    
+        </div>           
         <script>
             var close = document.getElementsByClassName("closebtn");
             var i;
@@ -112,5 +114,6 @@
             }
         }
         </script>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

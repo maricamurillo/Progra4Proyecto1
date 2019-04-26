@@ -1,3 +1,15 @@
+
+<%-- 
+    errorIngreso.jsp
+
+
+    EIF209 - Programacion 4 - Proyecto #1
+    Abril 2019
+    Autores: 
+                - 113030275  Mariela Cambronero Murillo
+                - 111320128 Rodrigo Rodriguez
+--%>
+
 <!DOCTYPE HTML>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>

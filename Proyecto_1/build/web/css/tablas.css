@@ -1,3 +1,18 @@
+
+/*
+
+    tablas.css
+
+    EIF209 - Programación 4 – Proyecto #1 
+    Abril 2019
+
+    Autores:
+            - 113030275 Mariela Cambronero
+            - 111320128 Rodrigo Rodriguez
+
+ */
+
+
 .divTablas{
     float: left;
     align-items: center;
@@ -10,12 +25,11 @@
     font-size: 8pt;
     margin-left: 15pt;
     margin-top: 10pt;
-    border: 1px black; 
-    
+    border: 1px black;
 }
+
 .tablasBody{
-   border: 1px black; 
-     
+   border: 1px black;
 }
 
 .tablasBody th {
@@ -39,8 +53,7 @@
     font-size: 10pt;
     background: #2196F3;
     color: white;
-    border: 1px black; 
-    
+    border: 1px black;
 }
 
 .grupoTabla{
@@ -49,5 +62,5 @@
     font-size: 10pt;
     background: #f44336;
     color: white;
-     border: 1px black; 
+    border: 1px black; 
 }
