@@ -11,9 +11,10 @@
 
 
 function initGrupos(){
+    
     cargarGruposDisponibles();
     cargarMisGrupos();
-    //setTim(actualizarPersona(), 3000);
+    setTimeout(initGrupos, 1000);
 }
 
 function cargarGruposDisponibles(){

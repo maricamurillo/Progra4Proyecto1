@@ -1,18 +1,33 @@
+INSERT eif209_1901_p01.grupo (`secuencia`,`nombre`,`cupo`)
+VALUES
+('1','Los Invencibles','3'),
+('2','Hipster guys','0'),
+('3','Oompa Loompas','4'),
+('4','La seleccion','4'),
+('5','Los hijos de Batman','4'),
+('6','El mejor de todos','2')
+;
+
+INSERT INTO `eif209_1901_p01`.`estudiante`
+(`id`, `nrc`, `apellidos`, `nombre`, `secuencia`, `clave`, `ultimo_acceso`,`grupo_id`)
+VALUES
+('1', 40639, 'Alfaro Rodríguez', 'XXXXX', 45, '1',NULL,'1'),
+
+('402370259', 40639, 'Alfaro Rodríguez', 'Ismael', 1, '402370259',NULL,'1'),
+('402250407', 40639, 'Alvarado Ferreto', 'María', 2, '402250407',NULL,'2'),
+('207970180', 40639, 'Arroyo Solórzano', 'Luis', 3, '207970180', NULL,'2'),
+('116960863', 40639, 'Babb Jiménez', 'Diego', 4, '116960863', NULL,'2'),
+('801030879', 40639, 'Basulto Arzola', 'Rachel', 5, '801030879', NULL,'2'),
+('402380339', 40639, 'Bravo Zúñiga', 'Luis', 6, '402380339', NULL,'2'),
+('113030275', 40639, 'Cambronero Murillo', 'Mariela', 7, '113030275',NULL,'3'),
+('402360503', 40639, 'Campos Montero', 'Mauricio', 8, '402360503', NULL,'4'),
+('116870078', 40639, 'Cárdenas Alpízar', 'Lea', 9, '116870078', NULL,'5'),
+('402300046', 40639, 'Carvajal Salazar', 'Robert', 10, '402300046', NULL,'6'),
+('207660568', 40639, 'Chaves Acuña', 'Josue', 11, '207660568', NULL,'6'),
+('116970427', 40639, 'Esquivel Jiménez', 'Josef', 12, '116970427',NULL,'6');
 INSERT INTO `eif209_1901_p01`.`estudiante`
 (`id`, `nrc`, `apellidos`, `nombre`, `secuencia`, `clave`, `ultimo_acceso`)
 VALUES
-('402370259', 40639, 'Alfaro Rodríguez', 'Ismael', 1, '402370259', NULL),
-('402250407', 40639, 'Alvarado Ferreto', 'María', 2, '402250407', NULL),
-('207970180', 40639, 'Arroyo Solórzano', 'Luis', 3, '207970180', NULL),
-('116960863', 40639, 'Babb Jiménez', 'Diego', 4, '116960863', NULL),
-('801030879', 40639, 'Basulto Arzola', 'Rachel', 5, '801030879', NULL),
-('402380339', 40639, 'Bravo Zúñiga', 'Luis', 6, '402380339', NULL),
-('113030275', 40639, 'Cambronero Murillo', 'Mariela', 7, '113030275', NULL),
-('402360503', 40639, 'Campos Montero', 'Mauricio', 8, '402360503', NULL),
-('116870078', 40639, 'Cárdenas Alpízar', 'Lea', 9, '116870078', NULL),
-('402300046', 40639, 'Carvajal Salazar', 'Robert', 10, '402300046', NULL),
-('207660568', 40639, 'Chaves Acuña', 'Josue', 11, '207660568', NULL),
-('116970427', 40639, 'Esquivel Jiménez', 'Josef', 12, '116970427', NULL),
 ('116570271', 40639, 'Garro Eduarte', 'Bryan', 13, '116570271', NULL),
 ('116440310', 40639, 'Gómez Chaves', 'Danny', 14, '116440310', NULL),
 ('402290312', 40639, 'Méndez Acuña', 'Boris', 15, '402290312', NULL),
@@ -63,12 +78,3 @@ VALUES
 ('116550242', 40643, 'Zapata Narváez', 'Michael', 30, '116550242', NULL)
 ;
 
-INSERT eif209_1901_p01.grupo (nombre)
-VALUES
-('Los Invencibles'),
-('Hipster guys'),
-('Oompa Loompas'),
-('La seleccion'),
-('Los hijos de Batman'),
-('El mejor de todos')
-;

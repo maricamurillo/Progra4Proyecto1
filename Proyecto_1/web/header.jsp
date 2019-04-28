@@ -9,12 +9,23 @@
             - 111320128 Rodrigo Rodriguez
 --%>
 
+<%@page import="java.lang.String"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+        <script src="js/scriptCompruebaLogin.js" type="text/javascript"></script>
+         <%
+             String x = request.getRequestURL().toString(); 
+             System.out.println("xxxxx"+x);
+           
+              if (request.getSession(true).getAttribute("usuario") == null  ) {
+                    if(!x.contains("index.jsp")){request.getRequestDispatcher("errorIngreso.jsp").forward(request, response);}
+                    
+            }
+        %>
     </head>
     <body>
         <div>

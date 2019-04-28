@@ -45,7 +45,9 @@ public class ServicioCompruebaLogin extends HttpServlet {
             throws ServletException, IOException, InstantiationException, ClassNotFoundException, IllegalAccessException, SQLException {
         String idEstudiante = (String)request.getSession(true).getAttribute("usuario");
         if(idEstudiante== null){
-            response.sendRedirect("cambiarclave.jsp?status=2");
+            System.out.println("servicios.ServicioCompruebaLogin.processRequest()");
+            //response.sendRedirect("cambiarclave.jsp?status=2");
+           
         }
         
     }

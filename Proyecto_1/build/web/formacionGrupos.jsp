@@ -18,6 +18,7 @@
         <script src="js/loadJSON.js" type="text/javascript"></script>
         <script src="js/scriptGrupos.js" type="text/javascript"></script>
         <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+       
         <title>Formacion de grupos</title>
     </head>
     <body onload="initGrupos()">
@@ -28,6 +29,7 @@
             </header>
             
             <%
+                System.out.println("className.methodName()");
                 int status = 0;
                 try {
                     status = Integer.parseInt(request.getParameter("status"));

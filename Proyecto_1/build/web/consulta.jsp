@@ -14,6 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <jsp:useBean id="login" scope="session" type="String" class="java.lang.String" />
         <title>JSP Page</title>
     </head>
     <body>

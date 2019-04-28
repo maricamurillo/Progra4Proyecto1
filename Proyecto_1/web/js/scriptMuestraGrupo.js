@@ -5,8 +5,9 @@ function initMuestra(){
    
 }
  function cargarGrupos(){
+   
     loadJSON(actualizGrupo,"ServicioMostrarGrupos");
-   //setTimeout(cargarGrupos(), 1000); 
+   setTimeout(cargarGrupos, 1000); 
 }
 function actualizGrupo(textoJSON){
     var refDiv = document.getElementById("contents");

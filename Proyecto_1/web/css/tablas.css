@@ -12,7 +12,13 @@
 
  */
 
-
+ #contents{
+    height: 685px;
+    overflow: scroll;
+     
+ }
+     
+ 
 .divTablas{
     float: left;
     align-items: center;

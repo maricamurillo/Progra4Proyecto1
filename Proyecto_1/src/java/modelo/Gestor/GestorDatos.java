@@ -451,7 +451,7 @@ public class GestorDatos {
     private String URL_Servidor = "localhost";
     private static final String BASE_DATOS = "eif209_1901_p01";
     private static final String LOGIN = "root";
-    private static final String PASSWORD = "admin1234";
+    private static final String PASSWORD = "root";
     private static final String CMD_VERIFICAR ="SELECT id\n" +
         "FROM estudiante\n" +
         "WHERE id = ? AND clave= ?;";

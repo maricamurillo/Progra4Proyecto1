@@ -2,6 +2,31 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/js/scriptCompruebaLogin.js</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/consulta.jsp</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/index.jsp</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/src/java/servicios/ServicioCompruebaLogin.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/js/scriptMuestraGrupo.js</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/src/java/beans/Formularios.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/js/scriptsUsuarios.js</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/src/java/modelo/Gestor/GestorDatos.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/css/tablas.css</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/WEB-INF/tlds/formulario.tld</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/consultaGrupos.jsp</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/header.jsp</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/js/scriptGrupos.js</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/usuarios.jsp</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/src/java/servicios/ServicioGestionarGrupo.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/formacionGrupos.jsp</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/src/java/servicios/ServicioMenu.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/src/java/servicios/ServicioIngreso.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/menu.jsp</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/css/estilos.css</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/js/loadJSON.js</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/src/java/servicios/ServicioEstudiante.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/cambiarclave.jsp</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/Progra4Proyecto1/Proyecto_1/web/errorIngreso.jsp</file>
+        </group>
     </open-files>
 </project-private>

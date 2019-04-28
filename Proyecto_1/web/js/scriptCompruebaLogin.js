@@ -10,9 +10,8 @@ function cargarUsuario(){
 
 function comprueba(textoJSON){
     var usuario = textoJSON;
-    if(usuario){
-        request.getRequestDispatcher("index.html");
+    if(usuario===-1){
+        window.location.replace("index.jsp");
     }
     
 }
-

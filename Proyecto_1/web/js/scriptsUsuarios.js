@@ -1,5 +1,6 @@
 var ordenar =1;
 function initUsuarios(){
+  
     actualizarPersona();
     console.log("Aplicación inicializada..");
      
@@ -7,7 +8,7 @@ function initUsuarios(){
 function actualizarPersona() {
     console.log("Actualizando..");
     cargarEstudiantes();
-    //setTimeout(actualizarPersona(), 3000);
+    setTimeout(actualizarPersona, 1000);
     
 }
 function cargarEstudiantes(){

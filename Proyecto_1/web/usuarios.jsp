@@ -19,7 +19,7 @@
         <script src="js/scriptsUsuarios.js" type="text/javascript"></script>
         <link href="css/tablas.css" rel="stylesheet" type="text/css"/>
         <title>JSP Usuarios</title>
-       
+        
     </head>
     <body onload="initUsuarios()">
         <div id="wrapper">

@@ -18,6 +18,7 @@
         <script src="js/scriptMuestraGrupo.js" type="text/javascript"></script>
        <link href="css/tablas.css" rel="stylesheet" type="text/css"/>
        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+       <jsp:useBean id="login" scope="session" type="String" class="java.lang.String" />
     </head>
     <body onload="initMuestra()">
         <div id="wrapper">
